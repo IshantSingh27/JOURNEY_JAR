@@ -1,12 +1,23 @@
-import React from 'react'
+import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home/home"
+import Login from "./pages/Auth/login"
+import SignUp from "./pages/Auth/Signup"
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-4xl text-green-500 font-bold">
-  Tailwind Working!
-</h1>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/" exact element={<Home />} />
+          </Route>
+
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/sign-up" exact element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 
