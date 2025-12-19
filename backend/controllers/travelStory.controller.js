@@ -4,7 +4,7 @@ import { errorHandler } from "../utils/error.js"
 
 
 export const addTravelStory = async (req, res, next) => {
-  const { title, story, visitedLocation, imageUrl, visitedDate } = req.body
+  const { title, story, visitedLocation, imageUrl, visitedDate } = req.body || {};
 
   const userId = req.user.id
 
@@ -32,6 +32,20 @@ export const addTravelStory = async (req, res, next) => {
       story: travelStory,
       message: "You story is added successfully!",
     })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const getAllTravelStory = async (req, res, next) => {
+  const userId = req.user.id
+
+  try {
+    const travelStories = await TravelStory.find({ userId: userId }).sort({
+      isFavorite: -1,
+    })
+
+    res.status(200).json({ stories: travelStories })
   } catch (error) {
     next(error)
   }
