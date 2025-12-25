@@ -3,6 +3,7 @@ import { verifyToken } from "../utils/verifyUser.js"
 import {
   addTravelStory,
   deleteImage,
+  editTravelStory,
   getAllTravelStory,
   imageUpload,
 } from "../controllers/travelStory.controller.js"
@@ -17,6 +18,8 @@ router.delete("/delete-image", deleteImage)
 router.post("/add", verifyToken, addTravelStory)
 
 router.get("/get-all", verifyToken, getAllTravelStory)
+
+router.post("/edit-story/:id", verifyToken, editTravelStory)
 
 
 export default router
