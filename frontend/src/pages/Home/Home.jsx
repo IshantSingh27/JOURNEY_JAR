@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import Navbar from "../../components/Navbar"
 import axiosInstance from "../../utils/axiosInstance"
 import TravelStoryCard from "../../components/TravelStoryCard"
+import { ToastContainer, toast } from "react-toastify"
 
 const Home = () => {
   const [allStories, setAllStories] = useState([])
@@ -24,7 +25,25 @@ const Home = () => {
 
   const handleViewStory = async (data) => {}
 
-  const updateIsFavourite = async (data) => {}
+  const updateIsFavourite = async (storyData) => {
+    const storyId = storyData._id
+
+    try {
+      const response = await axiosInstance.put(
+        "/travel-story/update-is-favourite/" + storyId,
+        {
+          isFavorite: !storyData.isFavorite,
+        }
+      )
+
+      if (response.data && response.data.story) {
+        toast.success("Story updated successfully!")
+        getAllTravelStories()
+      }
+    } catch (error) {
+      console.log("Something went wrong. Please try again.")
+    }
+  }
 
   useEffect(() => {
     getAllTravelStories()
@@ -67,6 +86,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <ToastContainer />
   </>
 };
 
