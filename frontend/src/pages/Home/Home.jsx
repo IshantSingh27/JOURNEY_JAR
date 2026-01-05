@@ -3,9 +3,18 @@ import Navbar from "../../components/Navbar"
 import axiosInstance from "../../utils/axiosInstance"
 import TravelStoryCard from "../../components/TravelStoryCard"
 import { ToastContainer, toast } from "react-toastify"
+import { BsJournalPlus } from "react-icons/bs";
+import Modal from "react-modal"
+import AddEditTravelStory from "../../components/AddEditTravelStory"
 
 const Home = () => {
   const [allStories, setAllStories] = useState([])
+
+  const [openAddEditModal, setOpenAddEditModal] = useState({
+    isShown: false,
+    type: "add",
+    data: null,
+  })
 
   // Get all travel stories
   const getAllTravelStories = async () => {
@@ -87,6 +96,37 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Add & Edit Travel Story Modal */}
+      <Modal
+        isOpen={openAddEditModal.isShown}
+        onRequestClose={() => {}}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0,0,0,0.2)",
+            zIndex: 999,
+          },
+        }}
+        appElement={document.getElementById("root")}
+        className="w-[80vw] md:w-[40%] h-[80vh] bg-white rounded-lg mx-auto mt-14 p-5 overflow-y-scroll scrollbar z-50"
+      >
+        <AddEditTravelStory
+          storyInfo={openAddEditModal.data}
+          type={openAddEditModal.type}
+          onClose={() => {
+            setOpenAddEditModal({ isShown: false, type: "add", data: null })
+          }}
+          getAllTravelStories={getAllTravelStories}
+        />
+      </Modal>
+
+      <button
+        className="w-16 h-16 flex items-center justify-center rounded-full bg-[#05b6d3] hover:bg-cyan-400 fixed right-10 bottom-10"
+        onClick={() => {
+          setOpenAddEditModal({ isShown: true, type: "add", data: null })
+        }}
+      >
+        <BsJournalPlus className="text-[32px] text-white" />
+      </button>
       <ToastContainer />
   </>
 };
