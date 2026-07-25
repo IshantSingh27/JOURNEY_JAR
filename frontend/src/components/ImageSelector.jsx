@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { BsUpload } from "react-icons/bs"
 import { MdDeleteOutline } from "react-icons/md"
+import { BASE_URL } from "../utils/axiosInstance"
 
 const ImageSelector = ({ image, setImage, handleDeleteImage }) => {
   const inputRef = useRef(null)
@@ -26,7 +27,7 @@ const ImageSelector = ({ image, setImage, handleDeleteImage }) => {
   useEffect(() => {
     // if the image prop is a string(url), set it as the preview URL
     if (typeof image === "string") {
-      setPreviewUrl(image)
+      setPreviewUrl(image.startsWith("http") ? image : `${BASE_URL}/uploads/${image}`)
     } else if (image) {
       setPreviewUrl(URL.createObjectURL(image))
     } else {
