@@ -4,7 +4,8 @@ import { errorHandler } from "../utils/error.js"
 import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
-import { BASE_URL } from "../../frontend/src/utils/axiosInstance.js";
+
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000/api";
 
 
 export const addTravelStory = async (req, res, next) => {
@@ -156,7 +157,7 @@ export const deleteTravelStory = async (req, res, next) => {
 
     await travelStory.deleteOne()
 
-    const placeholderImageUrl = `${BASE_URL}/placeholderImage.png`
+    const placeholderImageUrl = `${BASE_URL}/assets/placeholderImage.jpg`
     const imageUrl = travelStory.imageUrl || placeholderImageUrl
 
     if (imageUrl && imageUrl !== placeholderImageUrl) {
