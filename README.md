@@ -4,7 +4,7 @@ JourneyJar is a full-stack travel journaling web application that helps users ca
 
 ## 🚀 Live Demo
 
-🌐 https://journeyjar-eta.vercel.app
+🌐 https://journey-jar-tqsl.onrender.com
 
 ## ✨ Features
 
@@ -38,7 +38,7 @@ JourneyJar is a full-stack travel journaling web application that helps users ca
 
 ### Deployment
 
-* Frontend: Vercel
+* Frontend: Render
 * Backend: Render
 * Database: MongoDB Atlas
 
