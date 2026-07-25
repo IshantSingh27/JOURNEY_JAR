@@ -238,7 +238,7 @@ DELETE /api/story/delete-image
 **Mrinal Chaubey**
 
 - GitHub: https://github.com/MrinalChaubey
-- LinkedIn: https://www.linkedin.com/in/mrinal-chaubey/
+- LinkedIn: https://www.linkedin.com/in/mrinal-chaubey-44a317290/
 
 ---
 
