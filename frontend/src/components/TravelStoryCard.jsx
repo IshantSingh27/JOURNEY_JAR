@@ -2,6 +2,7 @@ import React from "react"
 import moment from "moment"
 import { MdMyLocation } from "react-icons/md";
 import { FaHeart } from "react-icons/fa"
+import {BASE_URL} from "../utils/axiosInstance"
 
 const TravelStoryCard = ({
   imageUrl,
@@ -19,7 +20,7 @@ const TravelStoryCard = ({
   return (
     <div className="border border-slate-200 rounded-lg overflow-hidden bg-white hover:shadow-lg hover:shadow-slate-200 transition-all ease-in-out relative cursor-pointer">
       <img
-        src={imageUrl}
+        src={`${BASE_URL}/uploads/${imageUrl}`}
         alt={title}
         className="w-full h-56 object-cover rounded-lg"
         onClick={onClick}

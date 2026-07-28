@@ -3,6 +3,7 @@ import { IoMdClose } from "react-icons/io"
 import { MdOutlineDelete, MdOutlineUpdate } from "react-icons/md"
 import moment from "moment"
 import { FaLocationDot } from "react-icons/fa6"
+import { BASE_URL } from "../../utils/axiosInstance"
 
 const ViewTravelStory = ({
   storyInfo,
@@ -55,7 +56,7 @@ const ViewTravelStory = ({
         </div>
 
         <img
-          src={storyInfo && storyInfo.imageUrl}
+          src={storyInfo && `${BASE_URL}/uploads/${storyInfo.imageUrl}`}
           alt="story image"
           className="w-full h-[300px] object-cover rounded-lg"
         />

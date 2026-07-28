@@ -16,7 +16,7 @@ const app = express()
 
 app.use(
   cors({
-   origin: true,
+    origin: ["http://localhost:5173", "https://journey-jar-tqsl.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -32,8 +32,8 @@ app.use("/api/travel-story", travelStoryRoutes)
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")))
-app.use("/assets", express.static(path.join(__dirname, "assets")))
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")))
+app.use("/api/assets", express.static(path.join(__dirname, "assets")))
 
 app.use((err, req, res, next) => {
   res.status(err.statusCode || 500).json({

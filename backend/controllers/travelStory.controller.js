@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
 
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000/api";
+
 
 export const addTravelStory = async (req, res, next) => {
   const { title, story, visitedLocation, imageUrl, visitedDate } = req.body || {};
@@ -60,7 +62,7 @@ export const imageUpload = async (req, res, next) => {
       return next(errorHandler(400, "No image uploaded"))
     }
 
-  const imageUrl = `https://journeyjar-3.onrender.com/uploads/${req.file.filename}`
+  const imageUrl = `${req.file.filename}`
 
     res.status(201).json({ imageUrl })
   } catch (error) {
@@ -123,7 +125,7 @@ export const editTravelStory = async (req, res, next) => {
       next(errorHandler(404, "Travel Story not found!"))
     }
 
-  const placeholderImageUrl = `https://journeyjar-3.onrender.com/assets/placeholderImage.jpg`
+  const placeholderImageUrl = `${BASE_URL}/assets/placeholderImage.jpg`
 
     travelStory.title = title
     travelStory.story = story
@@ -155,7 +157,7 @@ export const deleteTravelStory = async (req, res, next) => {
 
     await travelStory.deleteOne()
 
-    const placeholderImageUrl = "https://journeyjar-3.onrender.com/assets/placeholderImage.png"
+    const placeholderImageUrl = `${BASE_URL}/assets/placeholderImage.jpg`
     const imageUrl = travelStory.imageUrl || placeholderImageUrl
 
     if (imageUrl && imageUrl !== placeholderImageUrl) {
