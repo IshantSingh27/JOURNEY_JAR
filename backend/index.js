@@ -16,8 +16,10 @@ const app = express()
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://journey-jar-tqsl.onrender.com"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: function (origin, callback) {
+      callback(null, true); // Allow any origin
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 )
