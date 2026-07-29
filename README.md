@@ -4,7 +4,7 @@ JourneyJar is a full-stack travel journaling web application that helps users ca
 
 ## 🚀 Live Demo
 
-🌐 https://journey-jar-tqsl.onrender.com
+🌐 https://journey-jar-frontend.onrender.com
 
 ## ✨ Features
 
